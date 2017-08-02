@@ -46,7 +46,7 @@ class ProjectHelper:
         category.send_keys("%s" % project.categories)
 
         select_view_status = Select(wd.find_element_by_name('view_state'))
-        select_view_status.select_by_visible_text("%s" % project.view_status)
+        select_view_status.select_by_visible_text("%s" % project.view_state)
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -81,6 +81,6 @@ class ProjectHelper:
             href = element.get_attribute("href")
             href.startswith("http://localhost/mantisbt-1.2.19/manage_proj_edit_page.php?project_id=")
             id_css = href[70:]
-            if id == id_css:
+            if id == int(id_css):
                 wd.find_element_by_link_text("%s" % name).click()
                 break
